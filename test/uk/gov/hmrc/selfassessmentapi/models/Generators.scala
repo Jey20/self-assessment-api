@@ -29,8 +29,8 @@ object Generators {
 
   val genIncomes: Gen[Incomes] =
     for {
-      turnover <- Gen.option(genSimpleIncome)
-      other <- Gen.option(genSimpleIncome)
+      turnover <- Gen.option(amount)
+      other <- Gen.option(amount)
     } yield Incomes(turnover = turnover, other = other)
 
 

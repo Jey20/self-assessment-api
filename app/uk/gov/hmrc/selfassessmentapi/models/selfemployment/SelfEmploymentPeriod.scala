@@ -53,7 +53,7 @@ object SelfEmploymentPeriod extends PeriodValidator[SelfEmploymentPeriod] {
 
   private def fromDESIncomes(desPeriod: des.selfemployment.SelfEmploymentPeriod): Option[Incomes] = {
     desPeriod.financials.flatMap(_.incomes.map { incomes =>
-      Incomes(turnover = incomes.turnover.map(SimpleIncome(_)), other = incomes.other.map(SimpleIncome(_)))
+      Incomes(turnover = incomes.turnover, other = incomes.other)
     })
   }
 
@@ -70,12 +70,15 @@ object SelfEmploymentPeriod extends PeriodValidator[SelfEmploymentPeriod] {
         badDebt = deductions.badDebt.map(_.amount),
         adminCosts = deductions.adminCosts.map(_.amount),
         advertisingCosts = deductions.advertisingCosts.map(_.amount),
+        businessEntertainmentCosts = deductions.businessEntertainmentCosts.map(_.amount),
         financialCharges = deductions.financialCharges.map(_.amount),
         interest = deductions.interest.map(_.amount),
         maintenanceCosts = deductions.maintenanceCosts.map(_.amount),
         premisesRunningCosts = deductions.premisesRunningCosts.map(_.amount),
         staffCosts = deductions.staffCosts.map(_.amount),
         travelCosts = deductions.travelCosts.map(_.amount),
+        goodsAndServicesOwnUse = deductions.goodsAndServicesOwnUse.map(_.amount),
+        totalCisDeductions = deductions.totalCisDeductions.map(_.amount),
         other = deductions.other.map(_.amount)
       )
     }).fold[Option[Expenses]](None){ ex =>

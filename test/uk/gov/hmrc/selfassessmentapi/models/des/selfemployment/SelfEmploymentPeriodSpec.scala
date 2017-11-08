@@ -29,7 +29,7 @@ class SelfEmploymentPeriodSpec extends JsonSpec {
         from = LocalDate.parse("2017-04-06"),
         to = LocalDate.parse("2018-04-05"),
         incomes =
-          Some(models.selfemployment.Incomes(turnover = Some(SimpleIncome(10.10)), other = Some(SimpleIncome(10.10)))),
+          Some(models.selfemployment.Incomes(turnover = Some(10.10), other = Some(10.10))),
         expenses = Some(
           models.selfemployment.Expenses(
             cisPaymentsToSubcontractors = Some(10.10),

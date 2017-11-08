@@ -496,8 +496,8 @@ object Jsons {
                     |  $from
                     |  $to
                     |  "incomes": {
-                    |    "turnover": { "amount": $turnover },
-                    |    "other": { "amount": $otherIncome }
+                    |    "turnover": $turnover,
+                    |    "other": $otherIncome
                     |  }
                     |
                     |  ${consolidatedExpenses.fold("")(se => s""","consolidatedExpenses": $se""")}
@@ -552,8 +552,8 @@ object Jsons {
            |  $from
            |  $to
            |  "incomes": {
-           |    "turnover": { "amount": $turnover },
-           |    "other": { "amount": $otherIncome }
+           |    "turnover": $turnover,
+           |    "other": $otherIncome
            |  },
            |  "expenses": {
            |    "costOfGoodsBought": $costOfGoodsBought,

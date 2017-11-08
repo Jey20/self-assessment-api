@@ -26,7 +26,7 @@ class FinancialsSpec extends JsonSpec {
     "correctly map a API self-employment update into a DES self-employment update" in {
       val apiUpdate = models.selfemployment.SelfEmploymentPeriodUpdate(
         incomes =
-          Some(models.selfemployment.Incomes(turnover = Some(SimpleIncome(10.10)), other = Some(SimpleIncome(10.10)))),
+          Some(models.selfemployment.Incomes(turnover = Some(10.10), other = Some(10.10))),
         expenses = Some(
           models.selfemployment.Expenses(
             cisPaymentsToSubcontractors = Some(10.10),

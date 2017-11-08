@@ -43,8 +43,8 @@ object Financials {
 
     Financials(incomes = apiSePeriod.incomes.map( inc =>
         Incomes(
-          turnover = inc.turnover.map(_.amount),
-          other = inc.other.map(_.amount)
+          turnover = inc.turnover,
+          other = inc.other
         )),
       deductions = apiSePeriod.expenses.map( exp =>
         Deductions(costOfGoods = exp.costOfGoodsBought.map(expense2Deduction),
@@ -54,12 +54,15 @@ object Financials {
           premisesRunningCosts = exp.premisesRunningCosts.map(expense2Deduction),
           maintenanceCosts = exp.maintenanceCosts.map(expense2Deduction),
           adminCosts = exp.adminCosts.map(expense2Deduction),
+          businessEntertainmentCosts = exp.businessEntertainmentCosts.map(expense2Deduction),
           advertisingCosts = exp.advertisingCosts.map(expense2Deduction),
           interest = exp.interest.map(expense2Deduction),
           financialCharges = exp.financialCharges.map(expense2Deduction),
           badDebt = exp.badDebt.map(expense2Deduction),
           professionalFees = exp.professionalFees.map(expense2Deduction),
           depreciation = exp.depreciation.map(expense2Deduction),
+          goodsAndServicesOwnUse = exp.goodsAndServicesOwnUse.map(expense2Deduction),
+          totalCisDeductions = exp.totalCisDeductions.map(expense2Deduction),
           other = exp.other.map(expense2Deduction))
       ).fold {
         apiSePeriod.consolidatedExpenses.map(se => Deductions(simplifiedExpenses = Option(se)))
@@ -68,8 +71,8 @@ object Financials {
   def from(sePeriodUpdate: models.selfemployment.SelfEmploymentPeriodUpdate): Financials =
     Financials(incomes = sePeriodUpdate.incomes.map( inc =>
         Incomes(
-          turnover = inc.turnover.map(_.amount),
-          other = inc.other.map(_.amount)
+          turnover = inc.turnover,
+          other = inc.other
         )),
       deductions = sePeriodUpdate.expenses.map( exp =>
         Deductions(costOfGoods = exp.costOfGoodsBought.map(expense2Deduction),
@@ -79,12 +82,15 @@ object Financials {
             premisesRunningCosts = exp.premisesRunningCosts.map(expense2Deduction),
             maintenanceCosts = exp.maintenanceCosts.map(expense2Deduction),
             adminCosts = exp.adminCosts.map(expense2Deduction),
+            businessEntertainmentCosts = exp.businessEntertainmentCosts.map(expense2Deduction),
             advertisingCosts = exp.advertisingCosts.map(expense2Deduction),
             interest = exp.interest.map(expense2Deduction),
             financialCharges = exp.financialCharges.map(expense2Deduction),
             badDebt = exp.badDebt.map(expense2Deduction),
             professionalFees = exp.professionalFees.map(expense2Deduction),
             depreciation = exp.depreciation.map(expense2Deduction),
+            goodsAndServicesOwnUse = exp.goodsAndServicesOwnUse.map(expense2Deduction),
+            totalCisDeductions = exp.totalCisDeductions.map(expense2Deduction),
             other = exp.other.map(expense2Deduction))
       ).fold {
          sePeriodUpdate.consolidatedExpenses.map(se => Deductions(simplifiedExpenses = Option(se)))
@@ -97,30 +103,7 @@ object Incomes {
   implicit val format: Format[Incomes] = Json.format[Incomes]
 }
 
-case class Deductions(costOfGoods: Option[Deduction] = None,
-                      constructionIndustryScheme: Option[Deduction] = None,
-                      staffCosts: Option[Deduction] = None,
-                      travelCosts: Option[Deduction] = None,
-                      premisesRunningCosts: Option[Deduction] = None,
-                      maintenanceCosts: Option[Deduction] = None,
-                      adminCosts: Option[Deduction] = None,
-                      advertisingCosts: Option[Deduction] = None,
-                      interest: Option[Deduction] = None,
-                      financialCharges: Option[Deduction] = None,
-                      badDebt: Option[Deduction] = None,
-                      professionalFees: Option[Deduction] = None,
-                      depreciation: Option[Deduction] = None,
-                      other: Option[Deduction] = None,
-                      simplifiedExpenses: Option[BigDecimal] = None)
 
-object Deductions {
-  implicit val writes: Writes[Deductions] = Json.writes[Deductions]
-  implicit val reads: Reads[Deductions] = Json.reads[Deductions]
-}
 
-case class Deduction(amount: BigDecimal, disallowableAmount: Option[BigDecimal])
 
-object Deduction {
-  implicit val writes: Writes[Deduction] = Json.writes[Deduction]
-  implicit val reads: Reads[Deduction] = Json.reads[Deduction]
-}
+
