@@ -80,7 +80,7 @@ object SelfEmploymentAnnualSummary {
       )
     }
 
-    val disallowables = apiSummary.disalowableExpenses.map { expenses =>
+    val disallowables = apiSummary.disallowableExpenses.map { expenses =>
       Deductions(
         costOfGoods = expenses.costOfGoodsBought.map(expense2Deduction),
         constructionIndustryScheme = expenses.cisPaymentsToSubcontractors.map(expense2Deduction),
@@ -96,8 +96,6 @@ object SelfEmploymentAnnualSummary {
         badDebt = expenses.badDebt.map(expense2Deduction),
         professionalFees = expenses.professionalFees.map(expense2Deduction),
         depreciation = expenses.depreciation.map(expense2Deduction),
-        goodsAndServicesOwnUse = expenses.goodsAndServicesOwnUse.map(expense2Deduction),
-        totalCisDeductions = expenses.totalCisDeductions.map(expense2Deduction),
         other = expenses.other.map(expense2Deduction)
       )
     }

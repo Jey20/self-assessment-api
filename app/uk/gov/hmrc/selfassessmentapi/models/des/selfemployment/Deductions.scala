@@ -32,8 +32,6 @@ case class Deductions(costOfGoods: Option[Deduction] = None,
                       badDebt: Option[Deduction] = None,
                       professionalFees: Option[Deduction] = None,
                       depreciation: Option[Deduction] = None,
-                      goodsAndServicesOwnUse: Option[Deduction] = None,
-                      totalCisDeductions: Option[Deduction] = None,
                       other: Option[Deduction] = None,
                       simplifiedExpenses: Option[BigDecimal] = None)
 

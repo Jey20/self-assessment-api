@@ -35,8 +35,6 @@ case class Expenses(costOfGoodsBought: Option[Amount] = None,
                     financialCharges: Option[Amount] = None,
                     badDebt: Option[Amount] = None,
                     professionalFees: Option[Amount] = None,
-                    goodsAndServicesOwnUse: Option[Amount] = None,
-                    totalCisDeductions: Option[Amount] = None,
                     depreciation: Option[Amount] = None,
                     other: Option[Amount] = None) {
 
@@ -54,8 +52,6 @@ case class Expenses(costOfGoodsBought: Option[Amount] = None,
       financialCharges.isDefined ||
       badDebt.isDefined ||
       professionalFees.isDefined ||
-      goodsAndServicesOwnUse.isDefined ||
-      totalCisDeductions.isDefined ||
       depreciation.isDefined ||
       other.isDefined
 }
@@ -82,8 +78,6 @@ object Expenses {
       Validation[Expenses](JsPath \ "financialCharges", _.financialCharges.forall(validIf), onError("financialCharges")),
       Validation[Expenses](JsPath \ "badDebt", _.badDebt.forall(validIf), onError("badDebt")),
       Validation[Expenses](JsPath \ "professionalFees", _.professionalFees.forall(validIf), onError("professionalFees")),
-      Validation[Expenses](JsPath \ "goodsAndServicesOwnUse", _.goodsAndServicesOwnUse.forall(validIf), onError("goodsAndServicesOwnUse")),
-      Validation[Expenses](JsPath \ "totalCisDeductions", _.totalCisDeductions.forall(validIf), onError("totalCisDeductions")),
       Validation[Expenses](JsPath \ "depreciation", _.depreciation.forall(validIf), onError("depreciation")),
       Validation[Expenses](JsPath \ "other", _.other.forall(validIf), onError("other"))
     )

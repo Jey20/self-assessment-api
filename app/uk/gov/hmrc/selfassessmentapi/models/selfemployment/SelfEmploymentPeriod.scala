@@ -77,8 +77,6 @@ object SelfEmploymentPeriod extends PeriodValidator[SelfEmploymentPeriod] {
         premisesRunningCosts = deductions.premisesRunningCosts.map(_.amount),
         staffCosts = deductions.staffCosts.map(_.amount),
         travelCosts = deductions.travelCosts.map(_.amount),
-        goodsAndServicesOwnUse = deductions.goodsAndServicesOwnUse.map(_.amount),
-        totalCisDeductions = deductions.totalCisDeductions.map(_.amount),
         other = deductions.other.map(_.amount)
       )
     }).fold[Option[Expenses]](None){ ex =>

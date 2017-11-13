@@ -43,7 +43,7 @@ class SelfEmploymentAnnualSummarySpec extends UnitSpec {
           balancingChargeBPRA = Some(200.50),
           balancingChargeOther = Some(200.50),
           goodsAndServicesOwnUse = Some(200.50))),
-        disalowableExpenses = Some(
+        disallowableExpenses = Some(
           models.selfemployment.Expenses(
           cisPaymentsToSubcontractors = Some(10.10),
           depreciation = Some(10.10),

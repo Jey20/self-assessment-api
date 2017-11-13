@@ -61,8 +61,6 @@ object Financials {
           badDebt = exp.badDebt.map(expense2Deduction),
           professionalFees = exp.professionalFees.map(expense2Deduction),
           depreciation = exp.depreciation.map(expense2Deduction),
-          goodsAndServicesOwnUse = exp.goodsAndServicesOwnUse.map(expense2Deduction),
-          totalCisDeductions = exp.totalCisDeductions.map(expense2Deduction),
           other = exp.other.map(expense2Deduction))
       ).fold {
         apiSePeriod.consolidatedExpenses.map(se => Deductions(simplifiedExpenses = Option(se)))
@@ -89,8 +87,6 @@ object Financials {
             badDebt = exp.badDebt.map(expense2Deduction),
             professionalFees = exp.professionalFees.map(expense2Deduction),
             depreciation = exp.depreciation.map(expense2Deduction),
-            goodsAndServicesOwnUse = exp.goodsAndServicesOwnUse.map(expense2Deduction),
-            totalCisDeductions = exp.totalCisDeductions.map(expense2Deduction),
             other = exp.other.map(expense2Deduction))
       ).fold {
          sePeriodUpdate.consolidatedExpenses.map(se => Deductions(simplifiedExpenses = Option(se)))
