@@ -53,7 +53,8 @@ private object AppDependencies {
         "org.scalacheck" %% "scalacheck" % "1.13.4" % scope,
         "org.skyscreamer" % "jsonassert" % "1.4.0" % scope,
         "com.jayway.restassured" % "rest-assured" % "2.6.0" % scope,
-        "org.mockito" % "mockito-core" % "1.9.5" % scope
+        "org.mockito" % "mockito-core" % "1.9.5" % scope,
+        "uk.gov.hmrc" %% "zap-automation" % "0.16.0" % scope
       )
     }.test
   }
