@@ -36,7 +36,7 @@ trait BaseResource extends BaseController {
   private lazy val featureSwitch = FeatureSwitch(AppContext.featureSwitch)
 
   def AuthAction(nino: Nino) = new ActionRefiner[Request, AuthRequest] {
-    override protected def refine[A](request: Request[A]): Future[Either[Result, AuthRequest[A]]] =
+    override protected def refine[A](request: Request[A]): Future[Either[Result, AuthRequest[A]]] = {
       if (authIsEnabled) {
         implicit val ev: Request[A] = request
         authService.authCheck(nino) map {
@@ -44,6 +44,7 @@ trait BaseResource extends BaseController {
           case Left(authError) => Left(authError)
         }
       } else Future.successful(Right(new AuthRequest(Individual, request)))
+    }
   }
 
   def FeatureSwitchAction(source: SourceType, summary: Option[String] = None) =
