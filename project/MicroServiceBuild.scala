@@ -54,7 +54,7 @@ private object AppDependencies {
         "org.skyscreamer" % "jsonassert" % "1.4.0" % scope,
         "com.jayway.restassured" % "rest-assured" % "2.6.0" % scope,
         "org.mockito" % "mockito-core" % "1.9.5" % scope,
-        "uk.gov.hmrc" %% "zap-automation" % "0.16.0" % scope
+        "uk.gov.hmrc" %% "zap-automation" % "0.17.0" % scope
       )
     }.test
   }
